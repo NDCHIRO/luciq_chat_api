@@ -149,4 +149,5 @@ GET	 |   /applications/:token/chats/:chat_number/messages/search?q=text	 |   Sea
 ## Postman Collection
 
 
-[Uploading Luciq_app.postman_collection.json…]()
+[Luciq_app.postman_collection.json](https://github.com/user-attachments/files/23269576/Luciq_app.postman_collection.json)
+
