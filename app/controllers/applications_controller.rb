@@ -1,6 +1,11 @@
 class ApplicationsController < ApplicationController
   before_action :set_application, only: [:show, :update]
 
+  def message_count
+    application = Application.find_by!(token: params[:token])
+    render json: { message_count: application.messages_count }
+  end
+
   # POST /applications
   def create
     app = Application.new(application_params)
@@ -34,7 +39,7 @@ class ApplicationsController < ApplicationController
   private
 
   def set_application
-    @application = Application.find_by!(token: params[:token])
+      @application = Application.find_by!(token: params[:application_token] || params[:token])
   end
 
   def application_params

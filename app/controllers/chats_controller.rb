@@ -5,16 +5,13 @@ class ChatsController < ApplicationController
   # GET /applications/:token/chats
   def index
     chats = @application.chats.select(:number, :messages_count, :created_at)
-
-    render json: chats.as_json(
-      only: [:number, :messages_count, :created_at]
-    )
+    render json: chats
   end
 
-  # GET /applications/:token/chats/:number
+  # GET /applications/:token/chats/:chat_number
   def show
     render json: {
-      number: @chat.number,
+      chat_number: @chat.number,
       messages_count: @chat.messages_count,
       created_at: @chat.created_at
     }
@@ -22,11 +19,9 @@ class ChatsController < ApplicationController
 
   # POST /applications/:token/chats
   def create
-    chat = @application.chats.build
-    # number will be auto-assigned by Chat model before_validation
-
+    chat = @application.chats.build # number auto-generated
     if chat.save
-      render json: { number: chat.number }, status: :created
+      render json: { chat_number: chat.number }, status: :created
     else
       render json: { errors: chat.errors.full_messages }, status: :unprocessable_entity
     end
@@ -35,10 +30,12 @@ class ChatsController < ApplicationController
   private
 
   def set_application
-    @application = Application.find_by!(token: params[:application_token] || params[:token])
+    token = params[:application_token] || params[:token] || request.path_parameters[:application_token]
+    @application = Application.find_by!(token: token)
   end
 
   def set_chat
-    @chat = @application.chats.find_by!(number: params[:number])
+    number = params[:chat_number] || request.path_parameters[:chat_number] || params[:chat_chat_number]
+    @chat = @application.chats.find_by!(number: number)
   end
 end
