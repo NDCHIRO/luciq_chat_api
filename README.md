@@ -81,11 +81,12 @@ bundle exec rails db:reset   # drop + create + migrate
 All endpoints are JSON.
 
 ## Applications
-Method	Endpoint	                            Description
-POST	/applications	                        Create new app
-GET	    /applications/:token	                Get app info
-PATCH	/applications/:token	                Update / rename app
-GET	    /applications/:token/message_count	    Total messages in app
+|Method	|Endpoint|	                            Description
+|----------|--------|--------|
+POST	|/applications|	                        Create new app
+GET	    |/applications/:token|	                Get app info
+PATCH	|/applications/:token|	                Update / rename app
+GET	    |/applications/:token/message_count|	    Total messages in app
 
 
 ## Chats
