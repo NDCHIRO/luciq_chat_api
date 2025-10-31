@@ -101,6 +101,7 @@ GET	   | /applications/:token/chats/:chat_number/message_count|	Chat messages co
 
 ## Messages
 |Method|	Endpoint	   |                                                     Description
+|----------|--------|--------|
 POST	|/applications/:token/chats/:chat_number/messages	|                Create message
 GET	 |   /applications/:token/chats/:chat_number/messages	  |              List messages
 GET	|    /applications/:token/chats/:chat_number/messages/:message_number|	Show message
