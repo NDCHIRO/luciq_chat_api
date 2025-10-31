@@ -8,7 +8,6 @@ A scalable messaging backend built with **Ruby on Rails + MySQL + Redis + Sideki
 ✅ Auto-increment chat & message numbers  
 ✅ Redis counters & Sidekiq jobs  
 ✅ Eventual consistency sync (every 1 min)  
-✅ Search messages (SQL LIKE; Elasticsearch optional)
 
 This simulates a real-world chat backend like WhatsApp/Messenger.
 
