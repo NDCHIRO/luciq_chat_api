@@ -145,7 +145,8 @@ GET	 |   /applications/:token/chats/:chat_number/messages/search?q=text	 |   Sea
 - Redis keys used
   - `chat:<chat_id>:message_number` for next message number (INCR)
   - `chat:<chat_id>:messages_count` for per‑chat message count
-- Counter caches
-  -  `chats.messages_count`
-- Periodic syncing 
-  - Workers exist for syncing counts from Redis to MySQL; scheduling requires adding `sidekiq-cron`.
+
+## Postman Collection
+
+
+[Uploading Luciq_app.postman_collection.json…]()
