@@ -1,6 +1,6 @@
 class ChatsController < ApplicationController
   before_action :set_application
-  before_action :set_chat, only: [:show]
+  before_action :set_chat, only: [:show, :message_count]
 
   # GET /applications/:token/chats
   def index
@@ -25,6 +25,14 @@ class ChatsController < ApplicationController
     else
       render json: { errors: chat.errors.full_messages }, status: :unprocessable_entity
     end
+  end
+
+  def message_count
+    redis_count = REDIS.get("chat:#{@chat.id}:messages_count").to_i
+    db_count    = @chat.messages_count
+    total = [redis_count, db_count].max
+
+    render json: { chat_number: @chat.number, messages_count: total }
   end
 
   private

@@ -1,10 +1,11 @@
 class Message < ApplicationRecord
-  belongs_to :chat, counter_cache: true
+  belongs_to :chat
 
   before_validation :assign_number, on: :create
 
-  validates :number, presence: true
   validates :body, presence: true
+  validates :number, presence: true, uniqueness: { scope: :chat_id }
+
 
   private
 

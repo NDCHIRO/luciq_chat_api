@@ -1,11 +1,11 @@
 class Chat < ApplicationRecord
-  belongs_to :application, counter_cache: true
+  belongs_to :application
   has_many :messages, dependent: :destroy
-
+  
   before_validation :assign_number, on: :create
 
-  validates :number, presence: true
   validates :application_id, presence: true
+  validates :number, presence: true, uniqueness: { scope: :application_id }
 
   private
 

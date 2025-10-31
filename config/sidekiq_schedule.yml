@@ -1,0 +1,7 @@
+sync_chat_counts:
+  cron: "* * * * *"   # every 1 minute
+  class: "ChatMessagesSyncWorker"
+
+sync_app_counts:
+  cron: "* * * * *"
+  class: "ApplicationMessagesSyncWorker"

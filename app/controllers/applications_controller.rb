@@ -1,10 +1,6 @@
 class ApplicationsController < ApplicationController
-  before_action :set_application, only: [:show, :update]
+  before_action :set_application, except: [:create]
 
-  def message_count
-    application = Application.find_by!(token: params[:token])
-    render json: { message_count: application.messages_count }
-  end
 
   # POST /applications
   def create
@@ -34,6 +30,21 @@ class ApplicationsController < ApplicationController
     else
       render json: { errors: @application.errors.full_messages }, status: :unprocessable_entity
     end
+  end
+
+
+  def message_count
+    # DB: sum the counter_cache on chats
+    db_total = @application.chats.sum(:messages_count)
+
+    # Redis: optional per-chat counters (use if higher than DB)
+    redis_total = 0
+    @application.chats.find_each do |chat|
+      redis_total += REDIS.get("chat:#{chat.id}:messages_count").to_i
+    end
+
+    total = [db_total, redis_total].max
+    render json: { application_token: @application.token, messages_count: total }
   end
 
   private
