@@ -90,20 +90,21 @@ GET	    |/applications/:token/message_count|	    Total messages in app
 
 
 ## Chats
-Method	Endpoint	                                            Description
-POST	/applications/:token/chats	                            Create chat
-GET	    /applications/:token/chats	                            List chats
-GET	    /applications/:token/chats/:chat_number	                Chat details
-GET	    /applications/:token/chats/:chat_number/message_count	Chat messages count
+|Method	|Endpoint	|                                            Description
+|----------|--------|--------|
+POST	|/applications/:token/chats	       |                     Create chat
+GET	 |   /applications/:token/chats	       |                     List chats
+GET	 |   /applications/:token/chats/:chat_number|	                Chat details
+GET	   | /applications/:token/chats/:chat_number/message_count|	Chat messages count
 
 
 
 ## Messages
-Method	Endpoint	                                                        Description
-POST	/applications/:token/chats/:chat_number/messages	                Create message
-GET	    /applications/:token/chats/:chat_number/messages	                List messages
-GET	    /applications/:token/chats/:chat_number/messages/:message_number	Show message
-GET	    /applications/:token/chats/:chat_number/messages/search?q=text	    Search messages
+|Method|	Endpoint	   |                                                     Description
+POST	|/applications/:token/chats/:chat_number/messages	|                Create message
+GET	 |   /applications/:token/chats/:chat_number/messages	  |              List messages
+GET	|    /applications/:token/chats/:chat_number/messages/:message_number|	Show message
+GET	 |   /applications/:token/chats/:chat_number/messages/search?q=text	 |   Search messages
 
 - Create application
 ```bash
